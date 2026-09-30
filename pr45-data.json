@@ -1,0 +1,194 @@
+{
+  "section": "PR4-PR5",
+  "title": "Polynomial Long Division & Zeros of Polynomial Functions",
+  "learningObjective": "PR4: Rewrite a rational function as a polynomial plus a proper rational function. PR5: Determine the zeros of a polynomial function with real coefficients.",
+  "faqs": [
+    {
+      "id": "faq-1",
+      "category": "conceptual",
+      "question": "What does it mean for a rational function to be \"proper\" versus \"improper,\" and why does that matter?",
+      "answer": "A rational function is <strong>proper</strong> if the numerator's degree is smaller than the denominator's, and <strong>improper</strong> if the numerator's degree is equal to or larger — the same idea as a proper vs. improper fraction like \\( \\tfrac{3}{5} \\) vs. \\( \\tfrac{32}{7} \\). It matters because an improper rational function can always be rewritten as a polynomial plus a proper rational function (PR4), which is often a far more useful form — just like rewriting \\( \\tfrac{32}{7} \\) as \\( 4+\\tfrac{4}{7} \\) makes its size much easier to see at a glance.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( \\dfrac{x^3+x}{x^2+4} \\), \\( \\dfrac{7+x^3}{x^2+x+1} \\), and \\( \\dfrac{x^4+x+1}{x^4+4x^2} \\) are all improper (numerator's degree \\( \\geq \\) denominator's). \\( \\dfrac{3}{x^2+3x+4} \\) is proper.</p></div>"
+    },
+    {
+      "id": "faq-2",
+      "category": "conceptual",
+      "question": "What is the Remainder Theorem, and why does it work?",
+      "answer": "The Remainder Theorem says that dividing a polynomial \\( p(x) \\) by \\( x-a \\) leaves a remainder equal to \\( p(a) \\) — the theorem turns evaluating a function into a division problem, or vice versa. It works because dividing gives \\( p(x) = (x-a)\\cdot q(x) + r \\) for some constant remainder \\( r \\); substituting \\( x=a \\) makes the first term vanish entirely, leaving \\( p(a) = r \\).<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=x^3-7x^2+7x+15 \\): dividing by \\( x-2 \\) leaves remainder 9, and indeed \\( f(2)=8-28+14+15=9 \\) — the remainder and the function value match exactly.</p></div>"
+    },
+    {
+      "id": "faq-3",
+      "category": "conceptual",
+      "question": "What is the Factor Theorem, and how is it related to the Remainder Theorem?",
+      "answer": "The Factor Theorem says \\( x-a \\) is a factor of \\( p(x) \\) exactly when \\( a \\) is a zero of \\( p(x) \\) — that is, when \\( p(a)=0 \\). It's really a special case of the Remainder Theorem: if the remainder when dividing by \\( x-a \\) is \\( p(a) \\), then a remainder of exactly 0 means \\( x-a \\) divides in evenly, with nothing left over, which is precisely what it means to be a factor.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=x^3-7x^2+7x+15 \\): dividing by \\( x-3 \\) leaves remainder 0, so \\( f(3)=0 \\) and \\( x-3 \\) is a factor.</p></div>"
+    },
+    {
+      "id": "faq-4",
+      "category": "conceptual",
+      "question": "What is the Rational Root Theorem, and what does it actually give me?",
+      "answer": "For a polynomial with integer coefficients, the Rational Root Theorem says every rational zero must have the form \\( \\tfrac{p}{q} \\), where \\( p \\) is a factor of the constant term and \\( q \\) is a factor of the leading coefficient. It's important to be clear about what this gives you: a list of every <em>candidate</em> that could possibly be a rational zero — not a guarantee that any particular one actually is. You still have to test each candidate, usually with the Remainder Theorem.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=6x^2-31x+40=(2x-5)(3x-8) \\), the true roots \\( \\tfrac{5}{2} \\) and \\( \\tfrac{8}{3} \\) both fit the pattern: each numerator (5, 8) divides the constant term 40, and each denominator (2, 3) divides the leading coefficient 6.</p></div>"
+    },
+    {
+      "id": "faq-5",
+      "category": "conceptual",
+      "question": "What is the Conjugate Zeros Theorem, and why must complex zeros come in pairs?",
+      "answer": "For a polynomial with <em>real</em> coefficients, the Conjugate Zeros Theorem says that if \\( a+bi \\) is a zero, then its conjugate \\( a-bi \\) must be a zero too. This happens because every step of solving for a zero — adding, multiplying, taking a square root of a negative number — treats \\( i \\) and \\( -i \\) in exactly the same way; there's no operation using only real-number coefficients that could ever tell them apart, so if one shows up as a solution, its mirror image is forced to come along with it.<div class=\"graph-wrap\"><svg viewBox=\"0 0 440 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"60.0\" y1=\"150.0\" x2=\"380.0\" y2=\"150.0\" stroke=\"#94a3b8\" stroke-width=\"1.8\" /><line x1=\"220.0\" y1=\"40.0\" x2=\"220.0\" y2=\"260.0\" stroke=\"#94a3b8\" stroke-width=\"1.8\" /><text x=\"385.0\" y=\"155.0\" font-size=\"13\" fill=\"#4a4a5a\" font-weight=\"700\" text-anchor=\"start\" >Re</text><text x=\"212.0\" y=\"35.0\" font-size=\"13\" fill=\"#4a4a5a\" font-weight=\"700\" text-anchor=\"end\" >Im</text><line x1=\"300.0\" y1=\"62.0\" x2=\"300.0\" y2=\"238.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" stroke-dasharray=\"5,4\" /><circle cx=\"300.0\" cy=\"62.0\" r=\"7\" fill=\"#1a6b6b\"/><text x=\"312.0\" y=\"67.0\" font-size=\"15\" fill=\"#1a6b6b\" font-weight=\"700\" text-anchor=\"start\" >a + bi</text><circle cx=\"300.0\" cy=\"238.0\" r=\"7\" fill=\"#D4622A\"/><text x=\"312.0\" y=\"243.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"start\" >a − bi</text><text x=\"220.0\" y=\"280.0\" font-size=\"13\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >Mirror images across the real axis — if one is a zero,</text><text x=\"220.0\" y=\"298.0\" font-size=\"13\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >a real-coefficient polynomial forces the other to be too.</text></svg></div><p class=\"graph-caption\">A complex zero a+bi and its conjugate a−bi sit at the same distance from the real axis, one above and one below.</p>"
+    },
+    {
+      "id": "faq-6",
+      "category": "conceptual",
+      "question": "Why does knowing one zero let me \"chip away\" at a higher-degree polynomial?",
+      "answer": "By the Factor Theorem, confirming one zero also confirms its matching factor. Dividing that factor out (PR4's tool) leaves a quotient with one lower degree than you started with — and that smaller polynomial has all the same remaining zeros as the original, just with less algebra standing between you and finding them. Repeat as many times as needed until what's left is small enough to factor or solve directly.<div class=\"graph-wrap\"><svg viewBox=\"0 0 460 408\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><marker id=\"a6\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"4.5\" orient=\"auto\"><path d=\"M0,0 L9,4.5 L0,9 Z\" fill=\"#0a3f52\"/></marker><rect x=\"30\" y=\"8\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"36.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >f(x) = x³ − 7x² + 7x + 15  (degree 3)</text><line x1=\"230.0\" y1=\"54.0\" x2=\"230.0\" y2=\"90.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"92\" width=\"400\" height=\"50\" rx=\"8\" fill=\"#fff8e6\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"114.0\" font-size=\"14.5\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >Find one zero: x = 3</text><text x=\"230.0\" y=\"132.0\" font-size=\"11.5\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >(Rational Root Theorem, a graph, or trial)</text><line x1=\"230.0\" y1=\"142.0\" x2=\"230.0\" y2=\"178.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"180\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"208.0\" font-size=\"14\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >Divide by (x − 3): quotient x² − 4x − 5  (degree 2)</text><line x1=\"230.0\" y1=\"226.0\" x2=\"230.0\" y2=\"262.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"264\" width=\"400\" height=\"50\" rx=\"8\" fill=\"#fdf0e8\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"288.0\" font-size=\"14\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >Now it's a quadratic — factor or use the</text><text x=\"230.0\" y=\"304.0\" font-size=\"14\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >quadratic formula: x = 5 and x = −1</text><line x1=\"230.0\" y1=\"314.0\" x2=\"230.0\" y2=\"350.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"352\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"380.0\" font-size=\"15.5\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >All zeros found: x = −1, 3, 5</text></svg></div><p class=\"graph-caption\">Each zero you confirm lets you divide it out and drop the degree by one — \"chipping away\" until what's left is small enough to factor or solve directly.</p>"
+    },
+    {
+      "id": "faq-7",
+      "category": "sticking-points",
+      "question": "How do I use polynomial long division to rewrite an improper rational function as a polynomial plus a proper rational function?",
+      "answer": "At each step, divide the leading term of what's left by the leading term of the divisor to get the next piece of the quotient, multiply that piece back through the divisor, and subtract. Keep going until the remaining piece has a smaller degree than the divisor — that remaining piece becomes your final remainder.<div class=\"graph-wrap\"><svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><text x=\"90.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"end\" >(x + 1)</text><text x=\"134.0\" y=\"20.0\" font-size=\"20\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"start\" >)</text><text x=\"160.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >3x</text><text x=\"206.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 2</text><line x1=\"140.0\" y1=\"30.0\" x2=\"280.0\" y2=\"30.0\" stroke=\"#0a3f52\" stroke-width=\"2.4\" /><text x=\"160.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >3x²</text><text x=\"206.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 5x</text><text x=\"252.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 7</text><text x=\"160.0\" y=\"82.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >3x²</text><text x=\"206.0\" y=\"82.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >+ 3x</text><line x1=\"140.0\" y1=\"92.0\" x2=\"226.0\" y2=\"92.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" /><text x=\"206.0\" y=\"112.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >2x</text><text x=\"252.0\" y=\"112.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 7</text><text x=\"206.0\" y=\"138.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >2x</text><text x=\"252.0\" y=\"138.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >+ 2</text><line x1=\"186.0\" y1=\"148.0\" x2=\"272.0\" y2=\"148.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" /><text x=\"252.0\" y=\"170.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >5</text><text x=\"308.0\" y=\"54.0\" font-size=\"12.5\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"start\" >← dividend</text><text x=\"308.0\" y=\"82.0\" font-size=\"12.5\" fill=\"#D4622A\" font-weight=\"600\" text-anchor=\"start\" >← subtract 3x·(x+1)</text><text x=\"308.0\" y=\"138.0\" font-size=\"12.5\" fill=\"#D4622A\" font-weight=\"600\" text-anchor=\"start\" >← subtract 2·(x+1)</text><text x=\"308.0\" y=\"170.0\" font-size=\"12.5\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"start\" >← remainder</text></svg></div><p class=\"graph-caption\">(3x²+5x+7) ÷ (x+1): at each step, ask what to multiply the divisor by to match the leading term, then subtract. The process stops once the remainder's degree is smaller than the divisor's.</p><div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( \\dfrac{3x^2+5x+7}{x+1} = 3x+2+\\dfrac{5}{x+1} \\) — read directly off the tableau: quotient \\( 3x+2 \\) on top, remainder 5 at the bottom.</p></div>"
+    },
+    {
+      "id": "faq-8",
+      "category": "sticking-points",
+      "question": "How do I set up long division when the polynomial is missing a term (like no x² term)?",
+      "answer": "Insert a placeholder term with coefficient 0 for the missing power, exactly the way you'd write $305$ instead of skipping a digit for the missing tens place. Skipping the placeholder misaligns every column after it and produces a wrong answer.<div class=\"graph-wrap\"><svg viewBox=\"0 0 680 84\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><rect x=\"20\" y=\"10\" width=\"260\" height=\"60\" rx=\"8\" fill=\"#fdf0e8\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"150.0\" y=\"40.0\" font-size=\"18\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >x² + 1</text><text x=\"150.0\" y=\"62.0\" font-size=\"12\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >(no x term!)</text><text x=\"340.0\" y=\"40.0\" font-size=\"22\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >→</text><rect x=\"400\" y=\"10\" width=\"260\" height=\"60\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"530.0\" y=\"40.0\" font-size=\"18\" fill=\"#1a6b6b\" font-weight=\"700\" text-anchor=\"middle\" >x² + 0x + 1</text><text x=\"530.0\" y=\"62.0\" font-size=\"12\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >placeholder keeps columns lined up</text></svg></div><p class=\"graph-caption\">Write a 0-coefficient placeholder for any missing power of x, the same trick used for missing place values in ordinary long division.</p><div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( x^2+1 \\) becomes \\( x^2+0x+1 \\) before dividing by \\( x-1 \\): the result is \\( x+1+\\dfrac{2}{x-1} \\) (check: \\( f(1)=1^2+1=2 \\), matching the remainder by the Remainder Theorem).</p></div>"
+    },
+    {
+      "id": "faq-9",
+      "category": "sticking-points",
+      "question": "How do I use the Remainder Theorem to evaluate a polynomial, or check a possible zero, without doing long division?",
+      "answer": "Just substitute the value directly into the polynomial and simplify — the Remainder Theorem guarantees this gives the exact same result that long division would, without any of the division work.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Is \\( \\dfrac{2}{5} \\) a zero of \\( f(x)=5x^3-2x^2+20x-8 \\)?</p><p class=\"math-line\">\\( f\\!\\left(\\dfrac{2}{5}\\right)=5\\left(\\dfrac{8}{125}\\right)-2\\left(\\dfrac{4}{25}\\right)+20\\left(\\dfrac{2}{5}\\right)-8 = \\dfrac{8}{25}-\\dfrac{8}{25}+8-8=0 \\) — yes, it's a zero.</p></div>"
+    },
+    {
+      "id": "faq-10",
+      "category": "sticking-points",
+      "question": "Once I've confirmed a zero, how do I use the Factor Theorem and division to reduce the polynomial's degree?",
+      "answer": "Divide the polynomial by \\( x-a \\), where \\( a \\) is your confirmed zero. Since the Factor Theorem guarantees this division comes out even (remainder 0), the quotient is a polynomial with one lower degree, holding all the zeros you haven't found yet.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=x^3-7x^2+7x+15 \\), with confirmed zero \\( x=3 \\): dividing by \\( x-3 \\) gives \\( f(x)=(x-3)(x^2-4x-5) \\), a quadratic left to solve.</p></div>"
+    },
+    {
+      "id": "faq-11",
+      "category": "sticking-points",
+      "question": "How do I list all the possible rational zeros using the Rational Root Theorem?",
+      "answer": "List every factor (positive and negative) of the constant term, list every factor of the leading coefficient, then form every possible fraction with a constant-term factor on top and a leading-coefficient factor on the bottom.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=5x^3-2x^2+20x-8 \\): factors of the constant term \\( -8 \\): \\( \\pm1,\\pm2,\\pm4,\\pm8 \\). Factors of the leading coefficient 5: \\( \\pm1,\\pm5 \\).</p><p class=\"math-line\">Possible rational zeros: \\( \\pm1,\\pm2,\\pm4,\\pm8,\\pm\\dfrac{1}{5},\\pm\\dfrac{2}{5},\\pm\\dfrac{4}{5},\\pm\\dfrac{8}{5} \\)</p></div>"
+    },
+    {
+      "id": "faq-12",
+      "category": "sticking-points",
+      "question": "Once I have that list, how do I actually find which candidates are real zeros?",
+      "answer": "Test candidates one at a time with the Remainder Theorem (faq-9) — substitute each one in and see whether the result is 0. There's no shortcut around testing, but a graph can help you guess which candidates are worth trying first (faq-14)."
+    },
+    {
+      "id": "faq-13",
+      "category": "sticking-points",
+      "question": "How do I find the remaining zeros once a polynomial has been reduced down to a quadratic?",
+      "answer": "Use ordinary quadratic methods — factoring or the quadratic formula — exactly as you would for any quadratic on its own. If the discriminant is negative, the quadratic formula will produce a complex conjugate pair (faq-5), not \"no solution.\"<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Continuing faq-10's \\( x^2-4x-5 \\): this factors as \\( (x-5)(x+1) \\), giving zeros \\( x=5 \\) and \\( x=-1 \\). All zeros of the original cubic: \\( x=-1,3,5 \\).</p></div>"
+    },
+    {
+      "id": "faq-14",
+      "category": "sticking-points",
+      "question": "How do I combine a graph with the Rational Root Theorem to find zeros more efficiently?",
+      "answer": "Use the graph to see roughly where the x-intercepts fall, then check only the candidates from your Rational Root Theorem list that are close to those locations — skipping the ones a glance at the graph already rules out.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=18x^4+67x^3-81x^2-202x+168 \\): the graph suggests zeros near \\( x=-4 \\) and \\( x=-2 \\). The Remainder Theorem confirms \\( f(-4)=0 \\) and \\( f(-2)=0 \\), and dividing both out leaves \\( 18x^2-41x+21 \\), which factors to give the remaining zeros \\( \\dfrac{3}{2} \\) and \\( \\dfrac{7}{9} \\).</p></div>"
+    },
+    {
+      "id": "faq-15",
+      "category": "sticking-points",
+      "question": "If I know a polynomial has a complex zero, how do I find another zero for free?",
+      "answer": "Take its conjugate. The Conjugate Zeros Theorem (faq-5) guarantees that if \\( a+bi \\) is a zero of a real-coefficient polynomial, \\( a-bi \\) is automatically a zero too — no extra work required beyond flipping the sign on the imaginary part.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=x^5+3x^4+4x^3+8x^2-16=(x-1)(x+2)^2(x^2+4) \\) has zeros \\( 1 \\) (mult. 1), \\( -2 \\) (mult. 2), and \\( \\pm 2i \\) (mult. 1 each) — the \\( 2i \\) and \\( -2i \\) arrive together as exactly this kind of conjugate pair.</p></div>"
+    },
+    {
+      "id": "faq-16",
+      "category": "sticking-points",
+      "question": "How do I build a polynomial of the smallest possible degree from a list of given zeros, multiplicities, and the requirement of real coefficients?",
+      "answer": "Write one factor per zero, raised to its stated multiplicity — but first check whether any complex zero is missing its conjugate partner, and add that partner in (at the same multiplicity) if the polynomial must have real coefficients. The smallest possible degree is just the sum of every multiplicity, including any conjugates you had to add.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Given: \\( x=2 \\) (mult. 1), \\( x=-1 \\) (mult. 2), \\( x=i \\) (mult. 1), real coefficients required.</p><p class=\"math-line\">Since \\( i \\) is complex, its conjugate \\( -i \\) must also be a zero (faq-5) — even though it wasn't listed.</p><p class=\"math-line\">Smallest degree: \\( 1+2+1+1=5 \\)</p><p class=\"math-line\">\\( f(x)=(x-2)(x+1)^2(x^2+1) = x^5-2x^3-2x^2-3x-2 \\)</p></div>"
+    },
+    {
+      "id": "faq-17",
+      "category": "connections",
+      "question": "How does polynomial long division from PR4 connect to the Remainder and Factor Theorems in PR5?",
+      "answer": "Division is the engine underneath both theorems. The Remainder Theorem is really just naming what division's leftover piece equals; the Factor Theorem is the special case where that leftover happens to be zero. Every time PR5 asks you to \"divide out\" a confirmed zero and reduce the polynomial's degree, it's PR4's long division doing the actual work."
+    },
+    {
+      "id": "faq-18",
+      "category": "connections",
+      "question": "How does this connect to PR3 (zeros, multiplicity, end behavior)?",
+      "answer": "PR3 taught you to read a polynomial's behavior once it's already factored — this section is how you actually GET it into factored form when it doesn't hand you one. The Rational Root Theorem and the Remainder/Factor Theorems are the missing first step: find the zeros, then everything from PR3 (crosses vs. touches, end behavior, sketching) applies exactly as before. The Conjugate Zeros Theorem also fills in something PR3 left open — why a polynomial's total zero count, including complex ones, always exactly matches its degree."
+    },
+    {
+      "id": "faq-19",
+      "category": "connections",
+      "question": "Why do these tools matter beyond this course?",
+      "answer": "Finding where a polynomial model equals zero — a break-even point, an equilibrium, a root of an engineering equation — is a constant task in applied math, and real-world models rarely arrive pre-factored. The Rational Root Theorem and synthetic-division-style tools are the starting point for the more general root-finding algorithms (like Newton's Method) used throughout numerical computing, and the Conjugate Zeros Theorem is a first, concrete encounter with a pattern — real coefficients forcing symmetric complex behavior — that reappears constantly in signal processing and control theory."
+    }
+  ],
+  "videos": [
+    {
+      "id": "vid-1",
+      "title": "Polynomial Long Division: Degree 4 Divided by Degree 2",
+      "url": "https://youtu.be/JhsL6A1Ztz4",
+      "description": "A worked example of polynomial long division, dividing a degree-4 polynomial by a degree-2 polynomial.",
+      "category": "division",
+      "relatedFaqs": [
+        "faq-7",
+        "faq-8"
+      ]
+    },
+    {
+      "id": "vid-2",
+      "title": "Use the Remainder Theorem to Determine if a Binomial Is a Factor of a Polynomial",
+      "url": "https://www.youtube.com/watch?v=pIQ1bDVPiPs",
+      "description": "Using the Remainder Theorem to test whether a binomial like (x-a) is a factor of a given polynomial.",
+      "category": "zeros-and-theorems",
+      "relatedFaqs": [
+        "faq-2",
+        "faq-3",
+        "faq-9"
+      ]
+    },
+    {
+      "id": "vid-3",
+      "title": "Ex: The Rational Root (Zero) Theorem",
+      "url": "https://www.youtube.com/watch?v=YDYnZdJmOjw",
+      "description": "An example of listing the possible rational roots of a polynomial function using the Rational Root Theorem.",
+      "category": "zeros-and-theorems",
+      "relatedFaqs": [
+        "faq-4",
+        "faq-11"
+      ]
+    }
+  ],
+  "apps": [],
+  "prompts": {
+    "guided": [
+      {
+        "id": "prompt-1",
+        "title": "Practice Polynomial Long Division",
+        "prompt": "I'm learning polynomial long division. Give me an improper rational function and walk me through dividing it step by step: what to multiply the divisor by, what to subtract, and when to stop. Give me a couple more of increasing difficulty, including one with a missing term, and check my work."
+      },
+      {
+        "id": "prompt-2",
+        "title": "Practice the Remainder and Factor Theorems",
+        "prompt": "I'm learning the Remainder and Factor Theorems. Give me a polynomial and a value to test, and ask me to predict what dividing by (x-a) will leave as a remainder before I actually check by evaluating f(a). Then give me a case where the remainder is 0, and ask me what that tells me about a factor."
+      },
+      {
+        "id": "prompt-3",
+        "title": "Practice the Full Zero-Hunting Process",
+        "prompt": "Give me a polynomial of degree 3 or 4 with integer coefficients. Walk me through the whole process: listing possible rational zeros with the Rational Root Theorem, testing candidates with the Remainder Theorem, dividing out each confirmed zero to reduce the degree, and finishing with the quadratic formula once it's small enough. Check my work at each stage."
+      },
+      {
+        "id": "prompt-4",
+        "title": "Practice the Conjugate Zeros Theorem",
+        "prompt": "I'm learning that complex zeros of a real-coefficient polynomial come in conjugate pairs. Give me a polynomial's factored form that includes a complex zero, and ask me to identify its conjugate partner and explain why it has to be there. Then give me a list of zeros and multiplicities (including a complex one) and ask me to find the smallest possible degree of a real-coefficient polynomial with those zeros."
+      },
+      {
+        "id": "prompt-5",
+        "title": "Connect PR4 and PR5 to PR3",
+        "prompt": "I've learned how to read a polynomial's graph from its factored form in PR3, and now I'm learning how to actually find that factored form using division and the zero-hunting theorems in PR4/PR5. Walk me through one full example: start with an unfactored polynomial, find all its zeros using these tools, and then use PR3's rules to describe what its graph looks like."
+      }
+    ],
+    "open": [
+      {
+        "id": "open-1",
+        "title": "Create Your Own",
+        "prompt": "Use the AI tool of your choice. Start by describing what you're confused about or curious about from Sections PR4 (Polynomial Long Division) or PR5 (Zeros of Polynomial Functions). Ask the AI to help you explore that idea. Share what you learned and what surprised you."
+      }
+    ]
+  }
+}
