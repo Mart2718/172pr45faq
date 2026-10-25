@@ -1,0 +1,635 @@
+{
+  "section": "PR4-PR5",
+  "title": "Polynomial Long Division & Zeros of Polynomial Functions",
+  "learningObjective": "PR4: Rewrite a rational function as a polynomial plus a proper rational function. PR5: Determine the zeros of a polynomial function with real coefficients.",
+  "faqs": [
+    {
+      "id": "faq-1",
+      "category": "conceptual",
+      "question": "What does it mean for a rational function to be \"proper\" versus \"improper,\" and why does that matter?",
+      "answer": "A rational function is <strong>proper</strong> if the numerator's degree is smaller than the denominator's, and <strong>improper</strong> if the numerator's degree is equal to or larger — the same idea as a proper vs. improper fraction like \\( \\tfrac{3}{5} \\) vs. \\( \\tfrac{32}{7} \\). It matters because an improper rational function can always be rewritten as a polynomial plus a proper rational function (PR4), which is often a far more useful form — just like rewriting \\( \\tfrac{32}{7} \\) as \\( 4+\\tfrac{4}{7} \\) makes its size much easier to see at a glance.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( \\dfrac{x^3+x}{x^2+4} \\), \\( \\dfrac{7+x^3}{x^2+x+1} \\), and \\( \\dfrac{x^4+x+1}{x^4+4x^2} \\) are all improper (numerator's degree \\( \\geq \\) denominator's). \\( \\dfrac{3}{x^2+3x+4} \\) is proper.</p></div>"
+    },
+    {
+      "id": "faq-2",
+      "category": "conceptual",
+      "question": "What is the Remainder Theorem, and why does it work?",
+      "answer": "The Remainder Theorem says that dividing a polynomial \\( p(x) \\) by \\( x-a \\) leaves a remainder equal to \\( p(a) \\) — the theorem turns evaluating a function into a division problem, or vice versa. It works because dividing gives \\( p(x) = (x-a)\\cdot q(x) + r \\) for some constant remainder \\( r \\); substituting \\( x=a \\) makes the first term vanish entirely, leaving \\( p(a) = r \\).<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=x^3-7x^2+7x+15 \\): dividing by \\( x-2 \\) leaves remainder 9, and indeed \\( f(2)=8-28+14+15=9 \\) — the remainder and the function value match exactly.</p></div>"
+    },
+    {
+      "id": "faq-3",
+      "category": "conceptual",
+      "question": "What is the Factor Theorem, and how is it related to the Remainder Theorem?",
+      "answer": "The Factor Theorem says \\( x-a \\) is a factor of \\( p(x) \\) exactly when \\( a \\) is a zero of \\( p(x) \\) — that is, when \\( p(a)=0 \\). It's really a special case of the Remainder Theorem: if the remainder when dividing by \\( x-a \\) is \\( p(a) \\), then a remainder of exactly 0 means \\( x-a \\) divides in evenly, with nothing left over, which is precisely what it means to be a factor.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=x^3-7x^2+7x+15 \\): dividing by \\( x-3 \\) leaves remainder 0, so \\( f(3)=0 \\) and \\( x-3 \\) is a factor.</p></div>"
+    },
+    {
+      "id": "faq-4",
+      "category": "conceptual",
+      "question": "What is the Rational Root Theorem, and what does it actually give me?",
+      "answer": "For a polynomial with integer coefficients, the Rational Root Theorem says every rational zero must have the form \\( \\tfrac{p}{q} \\), where \\( p \\) is a factor of the constant term and \\( q \\) is a factor of the leading coefficient. It's important to be clear about what this gives you: a list of every <em>candidate</em> that could possibly be a rational zero — not a guarantee that any particular one actually is. You still have to test each candidate, usually with the Remainder Theorem.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">For \\( f(x)=6x^2-31x+40=(2x-5)(3x-8) \\), the true roots \\( \\tfrac{5}{2} \\) and \\( \\tfrac{8}{3} \\) both fit the pattern: each numerator (5, 8) divides the constant term 40, and each denominator (2, 3) divides the leading coefficient 6.</p></div>"
+    },
+    {
+      "id": "faq-5",
+      "category": "conceptual",
+      "question": "What is the Conjugate Zeros Theorem, and why must complex zeros come in pairs?",
+      "answer": "For a polynomial with <em>real</em> coefficients, the Conjugate Zeros Theorem says that if \\( a+bi \\) is a zero, then its conjugate \\( a-bi \\) must be a zero too. This happens because every step of solving for a zero — adding, multiplying, taking a square root of a negative number — treats \\( i \\) and \\( -i \\) in exactly the same way; there's no operation using only real-number coefficients that could ever tell them apart, so if one shows up as a solution, its mirror image is forced to come along with it.<div class=\"graph-wrap\"><svg viewBox=\"0 0 440 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"60.0\" y1=\"150.0\" x2=\"380.0\" y2=\"150.0\" stroke=\"#94a3b8\" stroke-width=\"1.8\" /><line x1=\"220.0\" y1=\"40.0\" x2=\"220.0\" y2=\"260.0\" stroke=\"#94a3b8\" stroke-width=\"1.8\" /><text x=\"385.0\" y=\"155.0\" font-size=\"13\" fill=\"#4a4a5a\" font-weight=\"700\" text-anchor=\"start\" >Re</text><text x=\"212.0\" y=\"35.0\" font-size=\"13\" fill=\"#4a4a5a\" font-weight=\"700\" text-anchor=\"end\" >Im</text><line x1=\"300.0\" y1=\"62.0\" x2=\"300.0\" y2=\"238.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" stroke-dasharray=\"5,4\" /><circle cx=\"300.0\" cy=\"62.0\" r=\"7\" fill=\"#1a6b6b\"/><text x=\"312.0\" y=\"67.0\" font-size=\"15\" fill=\"#1a6b6b\" font-weight=\"700\" text-anchor=\"start\" >a + bi</text><circle cx=\"300.0\" cy=\"238.0\" r=\"7\" fill=\"#D4622A\"/><text x=\"312.0\" y=\"243.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"start\" >a − bi</text><text x=\"220.0\" y=\"280.0\" font-size=\"13\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >Mirror images across the real axis — if one is a zero,</text><text x=\"220.0\" y=\"298.0\" font-size=\"13\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >a real-coefficient polynomial forces the other to be too.</text></svg></div><p class=\"graph-caption\">A complex zero a+bi and its conjugate a−bi sit at the same distance from the real axis, one above and one below.</p>"
+    },
+    {
+      "id": "faq-6",
+      "category": "conceptual",
+      "question": "Why does knowing one zero let me \"chip away\" at a higher-degree polynomial?",
+      "answer": "By the Factor Theorem, confirming one zero also confirms its matching factor. Dividing that factor out (PR4's tool) leaves a quotient with one lower degree than you started with — and that smaller polynomial has all the same remaining zeros as the original, just with less algebra standing between you and finding them. Repeat as many times as needed until what's left is small enough to factor or solve directly.<div class=\"graph-wrap\"><svg viewBox=\"0 0 460 408\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><marker id=\"a6\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"4.5\" orient=\"auto\"><path d=\"M0,0 L9,4.5 L0,9 Z\" fill=\"#0a3f52\"/></marker><rect x=\"30\" y=\"8\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"36.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >f(x) = x³ − 7x² + 7x + 15  (degree 3)</text><line x1=\"230.0\" y1=\"54.0\" x2=\"230.0\" y2=\"90.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"92\" width=\"400\" height=\"50\" rx=\"8\" fill=\"#fff8e6\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"114.0\" font-size=\"14.5\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >Find one zero: x = 3</text><text x=\"230.0\" y=\"132.0\" font-size=\"11.5\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >(Rational Root Theorem, a graph, or trial)</text><line x1=\"230.0\" y1=\"142.0\" x2=\"230.0\" y2=\"178.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"180\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"208.0\" font-size=\"14\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >Divide by (x − 3): quotient x² − 4x − 5  (degree 2)</text><line x1=\"230.0\" y1=\"226.0\" x2=\"230.0\" y2=\"262.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"264\" width=\"400\" height=\"50\" rx=\"8\" fill=\"#fdf0e8\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"288.0\" font-size=\"14\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >Now it's a quadratic — factor or use the</text><text x=\"230.0\" y=\"304.0\" font-size=\"14\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >quadratic formula: x = 5 and x = −1</text><line x1=\"230.0\" y1=\"314.0\" x2=\"230.0\" y2=\"350.0\" stroke=\"#0a3f52\" stroke-width=\"2.2\" marker-end=\"url(#a6)\"/><rect x=\"30\" y=\"352\" width=\"400\" height=\"46\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"230.0\" y=\"380.0\" font-size=\"15.5\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >All zeros found: x = −1, 3, 5</text></svg></div><p class=\"graph-caption\">Each zero you confirm lets you divide it out and drop the degree by one — \"chipping away\" until what's left is small enough to factor or solve directly.</p>"
+    },
+    {
+      "id": "faq-7",
+      "category": "sticking-points",
+      "question": "How do I use polynomial long division to rewrite an improper rational function as a polynomial plus a proper rational function?",
+      "answer": "At each step, divide the leading term of what's left by the leading term of the divisor to get the next piece of the quotient, multiply that piece back through the divisor, and subtract. Keep going until the remaining piece has a smaller degree than the divisor — that remaining piece becomes your final remainder.<div class=\"graph-wrap\"><svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><text x=\"90.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"end\" >(x + 1)</text><text x=\"134.0\" y=\"20.0\" font-size=\"20\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"start\" >)</text><text x=\"160.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >3x</text><text x=\"206.0\" y=\"20.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 2</text><line x1=\"140.0\" y1=\"30.0\" x2=\"280.0\" y2=\"30.0\" stroke=\"#0a3f52\" stroke-width=\"2.4\" /><text x=\"160.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >3x²</text><text x=\"206.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 5x</text><text x=\"252.0\" y=\"54.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 7</text><text x=\"160.0\" y=\"82.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >3x²</text><text x=\"206.0\" y=\"82.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >+ 3x</text><line x1=\"140.0\" y1=\"92.0\" x2=\"226.0\" y2=\"92.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" /><text x=\"206.0\" y=\"112.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >2x</text><text x=\"252.0\" y=\"112.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >+ 7</text><text x=\"206.0\" y=\"138.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >2x</text><text x=\"252.0\" y=\"138.0\" font-size=\"15\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >+ 2</text><line x1=\"186.0\" y1=\"148.0\" x2=\"272.0\" y2=\"148.0\" stroke=\"#4a4a5a\" stroke-width=\"1.6\" /><text x=\"252.0\" y=\"170.0\" font-size=\"15\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >5</text><text x=\"308.0\" y=\"54.0\" font-size=\"12.5\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"start\" >← dividend</text><text x=\"308.0\" y=\"82.0\" font-size=\"12.5\" fill=\"#D4622A\" font-weight=\"600\" text-anchor=\"start\" >← subtract 3x·(x+1)</text><text x=\"308.0\" y=\"138.0\" font-size=\"12.5\" fill=\"#D4622A\" font-weight=\"600\" text-anchor=\"start\" >← subtract 2·(x+1)</text><text x=\"308.0\" y=\"170.0\" font-size=\"12.5\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"start\" >← remainder</text></svg></div><p class=\"graph-caption\">(3x²+5x+7) ÷ (x+1): at each step, ask what to multiply the divisor by to match the leading term, then subtract. The process stops once the remainder's degree is smaller than the divisor's.</p><div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( \\dfrac{3x^2+5x+7}{x+1} = 3x+2+\\dfrac{5}{x+1} \\) — read directly off the tableau: quotient \\( 3x+2 \\) on top, remainder 5 at the bottom.</p></div>"
+    },
+    {
+      "id": "faq-8",
+      "category": "sticking-points",
+      "question": "How do I set up long division when the polynomial is missing a term (like no x² term)?",
+      "answer": "Insert a placeholder term with coefficient 0 for the missing power, exactly the way you'd write $305$ instead of skipping a digit for the missing tens place. Skipping the placeholder misaligns every column after it and produces a wrong answer.<div class=\"graph-wrap\"><svg viewBox=\"0 0 680 84\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><rect x=\"20\" y=\"10\" width=\"260\" height=\"60\" rx=\"8\" fill=\"#fdf0e8\" stroke=\"#D4622A\" stroke-width=\"2.6\"/><text x=\"150.0\" y=\"40.0\" font-size=\"18\" fill=\"#D4622A\" font-weight=\"700\" text-anchor=\"middle\" >x² + 1</text><text x=\"150.0\" y=\"62.0\" font-size=\"12\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >(no x term!)</text><text x=\"340.0\" y=\"40.0\" font-size=\"22\" fill=\"#0a3f52\" font-weight=\"700\" text-anchor=\"middle\" >→</text><rect x=\"400\" y=\"10\" width=\"260\" height=\"60\" rx=\"8\" fill=\"#e6f2f2\" stroke=\"#1a6b6b\" stroke-width=\"2.6\"/><text x=\"530.0\" y=\"40.0\" font-size=\"18\" fill=\"#1a6b6b\" font-weight=\"700\" text-anchor=\"middle\" >x² + 0x + 1</text><text x=\"530.0\" y=\"62.0\" font-size=\"12\" fill=\"#4a4a5a\" font-weight=\"600\" text-anchor=\"middle\" >placeholder keeps columns lined up</text></svg></div><p class=\"graph-caption\">Write a 0-coefficient placeholder for any missing power of x, the same trick used for missing place values in ordinary long division.</p><div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( x^2+1 \\) becomes \\( x^2+0x+1 \\) before dividing by \\( x-1 \\): the result is \\( x+1+\\dfrac{2}{x-1} \\) (check: \\( f(1)=1^2+1=2 \\), matching the remainder by the Remainder Theorem).</p></div>"
+    },
+    {
+      "id": "faq-9",
+      "category": "sticking-points",
+      "question": "How do I use the Remainder Theorem to evaluate a polynomial, or check a possible zero, without doing long division?",
+      "answer": "Just substitute the value directly into the polynomial and simplify — the Remainder Theorem guarantees this gives the exact same result that long division would, without any of the division work.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Is \\( \\dfrac{2}{5} \\) a zero of \\( f(x)=5x^3-2x^2+20x-8 \\)?</p><p class=\"math-line\">\\( f\\!\\left(\\dfrac{2}{5}\\right)=5\\left(\\dfrac{8}{125}\\right)-2\\left(\\dfrac{4}{25}\\right)+20\\left(\\dfrac{2}{5}\\right)-8 = \\dfrac{8}{25}-\\dfrac{8}{25}+8-8=0 \\) — yes, it's a zero.</p></div>"
+    },
+    {
+      "id": "faq-10",
+      "category": "sticking-points",
+      "question": "Once I've confirmed a zero, how do I use the Factor Theorem and division to reduce the polynomial's degree?",
+      "answer": "Divide the polynomial by \\( x-a \\), where \\( a \\) is your confirmed zero. Since the Factor Theorem guarantees this division comes out even (remainder 0), the quotient is a polynomial with one lower degree, holding all the zeros you haven't found yet.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=x^3-7x^2+7x+15 \\), with confirmed zero \\( x=3 \\): dividing by \\( x-3 \\) gives \\( f(x)=(x-3)(x^2-4x-5) \\), a quadratic left to solve.</p></div>"
+    },
+    {
+      "id": "faq-11",
+      "category": "sticking-points",
+      "question": "How do I list all the possible rational zeros using the Rational Root Theorem?",
+      "answer": "List every factor (positive and negative) of the constant term, list every factor of the leading coefficient, then form every possible fraction with a constant-term factor on top and a leading-coefficient factor on the bottom.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=5x^3-2x^2+20x-8 \\): factors of the constant term \\( -8 \\): \\( \\pm1,\\pm2,\\pm4,\\pm8 \\). Factors of the leading coefficient 5: \\( \\pm1,\\pm5 \\).</p><p class=\"math-line\">Possible rational zeros: \\( \\pm1,\\pm2,\\pm4,\\pm8,\\pm\\dfrac{1}{5},\\pm\\dfrac{2}{5},\\pm\\dfrac{4}{5},\\pm\\dfrac{8}{5} \\)</p></div>"
+    },
+    {
+      "id": "faq-12",
+      "category": "sticking-points",
+      "question": "Once I have that list, how do I actually find which candidates are real zeros?",
+      "answer": "Test candidates one at a time with the Remainder Theorem (faq-9) — substitute each one in and see whether the result is 0. There's no shortcut around testing, but a graph can help you guess which candidates are worth trying first (faq-14)."
+    },
+    {
+      "id": "faq-13",
+      "category": "sticking-points",
+      "question": "How do I find the remaining zeros once a polynomial has been reduced down to a quadratic?",
+      "answer": "Use ordinary quadratic methods — factoring or the quadratic formula — exactly as you would for any quadratic on its own. If the discriminant is negative, the quadratic formula will produce a complex conjugate pair (faq-5), not \"no solution.\"<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Continuing faq-10's \\( x^2-4x-5 \\): this factors as \\( (x-5)(x+1) \\), giving zeros \\( x=5 \\) and \\( x=-1 \\). All zeros of the original cubic: \\( x=-1,3,5 \\).</p></div>"
+    },
+    {
+      "id": "faq-14",
+      "category": "sticking-points",
+      "question": "How do I combine a graph with the Rational Root Theorem to find zeros more efficiently?",
+      "answer": "Use the graph to see roughly where the x-intercepts fall, then check only the candidates from your Rational Root Theorem list that are close to those locations — skipping the ones a glance at the graph already rules out.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=18x^4+67x^3-81x^2-202x+168 \\): the graph suggests zeros near \\( x=-4 \\) and \\( x=-2 \\). The Remainder Theorem confirms \\( f(-4)=0 \\) and \\( f(-2)=0 \\), and dividing both out leaves \\( 18x^2-41x+21 \\), which factors to give the remaining zeros \\( \\dfrac{3}{2} \\) and \\( \\dfrac{7}{9} \\).</p></div>"
+    },
+    {
+      "id": "faq-15",
+      "category": "sticking-points",
+      "question": "If I know a polynomial has a complex zero, how do I find another zero for free?",
+      "answer": "Take its conjugate. The Conjugate Zeros Theorem (faq-5) guarantees that if \\( a+bi \\) is a zero of a real-coefficient polynomial, \\( a-bi \\) is automatically a zero too — no extra work required beyond flipping the sign on the imaginary part.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">\\( f(x)=x^5+3x^4+4x^3+8x^2-16=(x-1)(x+2)^2(x^2+4) \\) has zeros \\( 1 \\) (mult. 1), \\( -2 \\) (mult. 2), and \\( \\pm 2i \\) (mult. 1 each) — the \\( 2i \\) and \\( -2i \\) arrive together as exactly this kind of conjugate pair.</p></div>"
+    },
+    {
+      "id": "faq-16",
+      "category": "sticking-points",
+      "question": "How do I build a polynomial of the smallest possible degree from a list of given zeros, multiplicities, and the requirement of real coefficients?",
+      "answer": "Write one factor per zero, raised to its stated multiplicity — but first check whether any complex zero is missing its conjugate partner, and add that partner in (at the same multiplicity) if the polynomial must have real coefficients. The smallest possible degree is just the sum of every multiplicity, including any conjugates you had to add.<div class=\"example-box\"><div class=\"label\">Worked Example</div><p class=\"math-line\">Given: \\( x=2 \\) (mult. 1), \\( x=-1 \\) (mult. 2), \\( x=i \\) (mult. 1), real coefficients required.</p><p class=\"math-line\">Since \\( i \\) is complex, its conjugate \\( -i \\) must also be a zero (faq-5) — even though it wasn't listed.</p><p class=\"math-line\">Smallest degree: \\( 1+2+1+1=5 \\)</p><p class=\"math-line\">\\( f(x)=(x-2)(x+1)^2(x^2+1) = x^5-2x^3-2x^2-3x-2 \\)</p></div>"
+    },
+    {
+      "id": "faq-17",
+      "category": "connections",
+      "question": "How does polynomial long division from PR4 connect to the Remainder and Factor Theorems in PR5?",
+      "answer": "Division is the engine underneath both theorems. The Remainder Theorem is really just naming what division's leftover piece equals; the Factor Theorem is the special case where that leftover happens to be zero. Every time PR5 asks you to \"divide out\" a confirmed zero and reduce the polynomial's degree, it's PR4's long division doing the actual work."
+    },
+    {
+      "id": "faq-18",
+      "category": "connections",
+      "question": "How does this connect to PR3 (zeros, multiplicity, end behavior)?",
+      "answer": "PR3 taught you to read a polynomial's behavior once it's already factored — this section is how you actually GET it into factored form when it doesn't hand you one. The Rational Root Theorem and the Remainder/Factor Theorems are the missing first step: find the zeros, then everything from PR3 (crosses vs. touches, end behavior, sketching) applies exactly as before. The Conjugate Zeros Theorem also fills in something PR3 left open — why a polynomial's total zero count, including complex ones, always exactly matches its degree."
+    },
+    {
+      "id": "faq-19",
+      "category": "connections",
+      "question": "Why do these tools matter beyond this course?",
+      "answer": "Finding where a polynomial model equals zero — a break-even point, an equilibrium, a root of an engineering equation — is a constant task in applied math, and real-world models rarely arrive pre-factored. The Rational Root Theorem and synthetic-division-style tools are the starting point for the more general root-finding algorithms (like Newton's Method) used throughout numerical computing, and the Conjugate Zeros Theorem is a first, concrete encounter with a pattern — real coefficients forcing symmetric complex behavior — that reappears constantly in signal processing and control theory."
+    }
+  ],
+  "videos": [
+    {
+      "id": "vid-1",
+      "title": "Polynomial Long Division: Degree 4 Divided by Degree 2",
+      "url": "https://youtu.be/JhsL6A1Ztz4",
+      "description": "A worked example of polynomial long division, dividing a degree-4 polynomial by a degree-2 polynomial.",
+      "category": "division",
+      "relatedFaqs": [
+        "faq-7",
+        "faq-8"
+      ]
+    },
+    {
+      "id": "vid-2",
+      "title": "Use the Remainder Theorem to Determine if a Binomial Is a Factor of a Polynomial",
+      "url": "https://www.youtube.com/watch?v=pIQ1bDVPiPs",
+      "description": "Using the Remainder Theorem to test whether a binomial like (x-a) is a factor of a given polynomial.",
+      "category": "zeros-and-theorems",
+      "relatedFaqs": [
+        "faq-2",
+        "faq-3",
+        "faq-9"
+      ]
+    },
+    {
+      "id": "vid-3",
+      "title": "Ex: The Rational Root (Zero) Theorem",
+      "url": "https://www.youtube.com/watch?v=YDYnZdJmOjw",
+      "description": "An example of listing the possible rational roots of a polynomial function using the Rational Root Theorem.",
+      "category": "zeros-and-theorems",
+      "relatedFaqs": [
+        "faq-4",
+        "faq-11"
+      ]
+    }
+  ],
+  "apps": [],
+  "prompts": {
+    "guided": [
+      {
+        "id": "prompt-1",
+        "title": "Practice Polynomial Long Division",
+        "prompt": "I'm learning polynomial long division. Give me an improper rational function and walk me through dividing it step by step: what to multiply the divisor by, what to subtract, and when to stop. Give me a couple more of increasing difficulty, including one with a missing term, and check my work."
+      },
+      {
+        "id": "prompt-2",
+        "title": "Practice the Remainder and Factor Theorems",
+        "prompt": "I'm learning the Remainder and Factor Theorems. Give me a polynomial and a value to test, and ask me to predict what dividing by (x-a) will leave as a remainder before I actually check by evaluating f(a). Then give me a case where the remainder is 0, and ask me what that tells me about a factor."
+      },
+      {
+        "id": "prompt-3",
+        "title": "Practice the Full Zero-Hunting Process",
+        "prompt": "Give me a polynomial of degree 3 or 4 with integer coefficients. Walk me through the whole process: listing possible rational zeros with the Rational Root Theorem, testing candidates with the Remainder Theorem, dividing out each confirmed zero to reduce the degree, and finishing with the quadratic formula once it's small enough. Check my work at each stage."
+      },
+      {
+        "id": "prompt-4",
+        "title": "Practice the Conjugate Zeros Theorem",
+        "prompt": "I'm learning that complex zeros of a real-coefficient polynomial come in conjugate pairs. Give me a polynomial's factored form that includes a complex zero, and ask me to identify its conjugate partner and explain why it has to be there. Then give me a list of zeros and multiplicities (including a complex one) and ask me to find the smallest possible degree of a real-coefficient polynomial with those zeros."
+      },
+      {
+        "id": "prompt-5",
+        "title": "Connect PR4 and PR5 to PR3",
+        "prompt": "I've learned how to read a polynomial's graph from its factored form in PR3, and now I'm learning how to actually find that factored form using division and the zero-hunting theorems in PR4/PR5. Walk me through one full example: start with an unfactored polynomial, find all its zeros using these tools, and then use PR3's rules to describe what its graph looks like."
+      }
+    ],
+    "open": [
+      {
+        "id": "open-1",
+        "title": "Create Your Own",
+        "prompt": "Use the AI tool of your choice. Start by describing what you're confused about or curious about from Sections PR4 (Polynomial Long Division) or PR5 (Zeros of Polynomial Functions). Ask the AI to help you explore that idea. Share what you learned and what surprised you."
+      }
+    ]
+  },
+  "paths": [
+    {
+      "id": "PR4",
+      "label": "PR4: Polynomial Long Division",
+      "sectionLabel": "PR4, Polynomial Long Division",
+      "intro": "Builds to the PR4 check: use long division to write a rational function as a polynomial plus a proper rational function.",
+      "graphs": {
+        "LD2": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division layout\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(2x\\)</td><td class=\"ld-cell\">\\(+1\\)</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">\\(x - 3\\)</td><td class=\"ld-cell ld-first\">\\(2x^2\\)</td><td class=\"ld-cell\">\\(-5x\\)</td><td class=\"ld-cell\">\\(+4\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\">\\(-\\big(\\)\\(2x^2\\)</td><td class=\"ld-cell\">\\(-6x\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(x\\)</td><td class=\"ld-cell\">\\(+4\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(x\\)</td><td class=\"ld-cell\">\\(-3\\)\\(\\big)\\)</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(7\\)</td></tr></table></div>",
+        "LD3": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division layout\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(3x\\)</td><td class=\"ld-cell\">\\(-3\\)</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">\\(x^{2} + x - 6\\)</td><td class=\"ld-cell ld-first\">\\(3x^3\\)</td><td class=\"ld-cell\">\\(+0x^2\\)</td><td class=\"ld-cell\">\\(-20x\\)</td><td class=\"ld-cell\">\\(+14\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\">\\(-\\big(\\)\\(3x^3\\)</td><td class=\"ld-cell\">\\(+3x^2\\)</td><td class=\"ld-cell\">\\(-18x\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(-3x^2\\)</td><td class=\"ld-cell\">\\(-2x\\)</td><td class=\"ld-cell\">\\(+14\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(-3x^2\\)</td><td class=\"ld-cell\">\\(-3x\\)</td><td class=\"ld-cell\">\\(+18\\)\\(\\big)\\)</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(x\\)</td><td class=\"ld-cell\">\\(-4\\)</td></tr></table></div>",
+        "LDF": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division layout\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(-2x\\)</td><td class=\"ld-cell\">\\(+10\\)</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">\\(x^{2} + 3 x - 4\\)</td><td class=\"ld-cell ld-first\">\\(-2x^3\\)</td><td class=\"ld-cell\">\\(+4x^2\\)</td><td class=\"ld-cell\">\\(+39x\\)</td><td class=\"ld-cell\">\\(-37\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\">\\(-\\big(\\)\\(-2x^3\\)</td><td class=\"ld-cell\">\\(-6x^2\\)</td><td class=\"ld-cell\">\\(+8x\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(10x^2\\)</td><td class=\"ld-cell\">\\(+31x\\)</td><td class=\"ld-cell\">\\(-37\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(10x^2\\)</td><td class=\"ld-cell\">\\(+30x\\)</td><td class=\"ld-cell\">\\(-40\\)\\(\\big)\\)</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(x\\)</td><td class=\"ld-cell\">\\(+3\\)</td></tr></table></div>",
+        "LDN": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division of 1987 by 12\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">1</td><td class=\"ld-cell\">6</td><td class=\"ld-cell\">5</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">12</td><td class=\"ld-cell ld-first\">1</td><td class=\"ld-cell\">9</td><td class=\"ld-cell\">8</td><td class=\"ld-cell\">7</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell\">−1</td><td class=\"ld-cell\">2</td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">7</td><td class=\"ld-cell\">8</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">−7</td><td class=\"ld-cell\">2</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">6</td><td class=\"ld-cell\">7</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">−6</td><td class=\"ld-cell\">0</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">7</td></tr></table></div>",
+        "PROPER": "<div class=\"table-wrap\"><table class=\"lookup\"><tr><th scope=\"col\">Rational function</th><th scope=\"col\">Degree of top</th><th scope=\"col\">Degree of bottom</th><th scope=\"col\">Type</th></tr><tr><td>\\(\\dfrac{5}{x^2+1}\\)</td><td>0</td><td>2</td><td>proper</td></tr><tr><td>\\(\\dfrac{x-4}{x^2+x-6}\\)</td><td>1</td><td>2</td><td>proper</td></tr><tr><td>\\(\\dfrac{2x^2-5x+4}{x-3}\\)</td><td>2</td><td>1</td><td>improper</td></tr><tr><td>\\(\\dfrac{x^3+1}{x^3-2x}\\)</td><td>3</td><td>3</td><td>improper</td></tr></table></div>",
+        "S2": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>1</td><td>\\(\\dfrac{2x^2}{x}=2x\\)</td><td><span class=\"pr-badge pr-pow\">Divide leading terms</span></td></tr><tr><td>2</td><td>\\(2x(x-3)=2x^2-6x\\)</td><td><span class=\"pr-badge pr-prod\">Multiply back</span></td></tr><tr><td>3</td><td>\\((2x^2-5x)-(2x^2-6x)=x\\); bring down \\(+4\\)</td><td><span class=\"pr-badge pr-quot\">Subtract</span></td></tr><tr><td>4</td><td>\\(\\dfrac{x}{x}=+1\\); \\(1(x-3)=x-3\\); \\((x+4)-(x-3)=7\\)</td><td><span class=\"pr-badge pr-pow\">Divide leading terms</span></td></tr><tr><td>5</td><td>7 has degree 0, less than 1: stop.</td><td><span class=\"pr-badge pr-start\">Stop: remainder</span></td></tr><tr><td>Answer</td><td>\\(\\dfrac{2x^2-5x+4}{x-3}=2x+1+\\dfrac{7}{x-3}\\)</td><td><span class=\"pr-badge pr-prod\">Write the answer</span></td></tr></table></div>",
+        "S3": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Placeholder</td><td>No \\(x^2\\) term: write \\(3x^3+0x^2-20x+14\\).</td><td><span class=\"pr-badge pr-start\">Placeholder</span></td></tr><tr><td>1</td><td>\\(\\dfrac{3x^3}{x^2}=3x\\); \\(3x(x^2+x-6)=3x^3+3x^2-18x\\); subtract: \\(-3x^2-2x+14\\)</td><td><span class=\"pr-badge pr-pow\">Divide leading terms</span></td></tr><tr><td>2</td><td>\\(\\dfrac{-3x^2}{x^2}=-3\\); \\(-3(x^2+x-6)=-3x^2-3x+18\\); subtract: \\(x-4\\)</td><td><span class=\"pr-badge pr-quot\">Subtract</span></td></tr><tr><td>Stop</td><td>\\(x-4\\) has degree 1, less than 2.</td><td><span class=\"pr-badge pr-start\">Stop: remainder</span></td></tr><tr><td>Answer</td><td>\\(f(x)=3x-3+\\dfrac{x-4}{x^2+x-6}\\)</td><td><span class=\"pr-badge pr-prod\">Write the answer</span></td></tr></table></div>",
+        "S4": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Multiply</td><td>\\((3x-3)(x^2+x-6)=3x^3+3x^2-18x-3x^2-3x+18=3x^3-21x+18\\)</td><td><span class=\"pr-badge pr-prod\">Multiply back</span></td></tr><tr><td>Add remainder</td><td>\\(3x^3-21x+18+(x-4)=3x^3-20x+14\\) ✓</td><td><span class=\"pr-badge pr-prod\">Check</span></td></tr></table></div>",
+        "SF": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>1</td><td>\\(\\dfrac{-2x^3}{x^2}=-2x\\); \\(-2x(x^2+3x-4)=-2x^3-6x^2+8x\\); subtract: \\(10x^2+31x-37\\)</td><td><span class=\"pr-badge pr-pow\">Divide leading terms</span></td></tr><tr><td>2</td><td>\\(\\dfrac{10x^2}{x^2}=10\\); \\(10(x^2+3x-4)=10x^2+30x-40\\); subtract: \\(x+3\\)</td><td><span class=\"pr-badge pr-quot\">Subtract</span></td></tr><tr><td>Answer</td><td>\\(f(x)=-2x+10+\\dfrac{x+3}{x^2+3x-4}\\)</td><td><span class=\"pr-badge pr-prod\">Write the answer</span></td></tr></table></div>"
+      },
+      "stages": [
+        {
+          "stage": "Get ready",
+          "desc": "Three quick reviews PR4 leans on: long division with numbers, multiplying and subtracting polynomials, and standard form with placeholders. Skip any you already have.",
+          "stops": [
+            {
+              "id": "pr4-g1",
+              "title": "Long division with numbers",
+              "target": "Divide, multiply, subtract, bring down, and write the answer as a whole number plus a proper fraction.",
+              "cold": "Divide \\(1987\\div12\\). Write the result as a whole number plus a fraction smaller than 1.",
+              "coldPlain": "Divide 1987 by 12. Write the result as a whole number plus a fraction smaller than 1.",
+              "coldA": "\\(1987\\div12=165\\) remainder 7, so \\(\\dfrac{1987}{12}=165+\\dfrac{7}{12}\\).[[graph:LDN]]",
+              "solution": "12 goes into 19 once (subtract 12, leaves 7), into 78 six times (72, leaves 6), into 67 five times (60, leaves 7). Quotient 165, remainder 7: 165 + 7/12.",
+              "mistake": "Writing the answer as 165.7 (the remainder is 7 twelfths, not 7 tenths).",
+              "again": "Divide \\(745\\div 9\\).",
+              "againA": "\\(82\\) remainder \\(7\\): \\(82+\\dfrac{7}{9}\\).",
+              "reflect": "Polynomial long division is this same loop. Which step of the loop do you rush?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr4-g2",
+              "title": "Multiply and subtract polynomials",
+              "target": "Distribute to multiply, and distribute the minus sign to every term when subtracting.",
+              "cold": "(1) Multiply \\(3x(x^2+x-6)\\). (2) Subtract \\((3x^3+0x^2-20x)-(3x^3+3x^2-18x)\\).",
+              "coldPlain": "(1) Multiply 3x(x^2 + x - 6). (2) Subtract (3x^3 + 0x^2 - 20x) - (3x^3 + 3x^2 - 18x).",
+              "coldA": "(1) \\(3x^3+3x^2-18x\\) (2) \\(-3x^2-2x\\)",
+              "solution": "(1) 3x times each term: 3x^3 + 3x^2 - 18x. (2) Change every sign of the second polynomial and add: 0 - 3x^2 = -3x^2 and -20x + 18x = -2x.",
+              "mistake": "Subtracting only the first term: getting -20x - 18x = -38x.",
+              "again": "(1) \\(-2(x^2+3x-4)\\) (2) \\((x^2-5x+4)-(x^2-3x)\\)",
+              "againA": "(1) \\(-2x^2-6x+8\\) (2) \\(-2x+4\\)",
+              "reflect": "How does writing the subtraction as \"change signs, then add\" help?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr4-g3",
+              "title": "Degree, standard form, and placeholders",
+              "target": "Write polynomials in descending powers with 0 placeholders for missing terms, and read off the degree.",
+              "cold": "Write \\(14-20x+3x^3\\) in standard form with every power shown. What is its degree?",
+              "coldPlain": "Write 14 - 20x + 3x^3 in standard form with every power shown. What is its degree?",
+              "coldA": "\\(3x^3+0x^2-20x+14\\); degree 3.",
+              "solution": "Order the terms from the highest power down and insert 0x^2 for the missing x^2 term: 3x^3 + 0x^2 - 20x + 14. Highest power is 3.",
+              "mistake": "Leaving out the missing x^2 term, which misaligns the columns in long division.",
+              "again": "\\(x^4-5\\)",
+              "againA": "\\(x^4+0x^3+0x^2+0x-5\\); degree 4.",
+              "reflect": "Why is a placeholder like the 0 in 305?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Learn the skills",
+          "desc": "Proper vs improper, the division loop with a linear and then a quadratic divisor, and checking your answer.",
+          "stops": [
+            {
+              "id": "pr4-t1",
+              "title": "Proper vs improper",
+              "target": "A rational function is proper when the top has a smaller degree than the bottom; otherwise it is improper and can be divided.",
+              "explain": "[[graph:PROPER]]",
+              "cold": "Proper or improper? (1) \\(\\dfrac{x+7}{x^2-4}\\) (2) \\(\\dfrac{x^3-1}{x^2+2x}\\) (3) \\(\\dfrac{4x^2}{2x^2+1}\\)",
+              "coldPlain": "Proper or improper? (1) (x + 7)/(x^2 - 4) (2) (x^3 - 1)/(x^2 + 2x) (3) 4x^2/(2x^2 + 1)",
+              "coldA": "(1) proper (1 < 2) (2) improper (3 ≥ 2) (3) improper (2 = 2)",
+              "solution": "Compare degrees: (1) 1 < 2 proper. (2) 3 > 2 improper. (3) 2 = 2 improper (equal counts as improper).",
+              "mistake": "Calling equal degrees proper.",
+              "again": "(1) \\(\\dfrac{3}{x-5}\\) (2) \\(\\dfrac{x^2+x}{x+1}\\)",
+              "againA": "(1) proper (2) improper",
+              "reflect": "How is \"improper\" here like an improper fraction such as 7/3?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr4-t2",
+              "title": "Divide by a linear factor",
+              "target": "Repeat: divide leading terms, multiply back, subtract, bring down. Stop when what is left has smaller degree than the divisor.",
+              "cold": "Use long division to write \\(\\dfrac{2x^2-5x+4}{x-3}\\) as a polynomial plus a proper rational function.",
+              "coldPlain": "Use long division to write (2x^2 - 5x + 4)/(x - 3) as a polynomial plus a proper rational function.",
+              "note": "Show each divide, multiply, subtract cycle, any placeholder terms, and where you stopped and why.",
+              "coldA": "\\(2x+1+\\dfrac{7}{x-3}\\)[[graph:LD2]][[graph:S2]]",
+              "solution": "2x^2/x = 2x; 2x(x-3) = 2x^2 - 6x; subtract to get x + 4. x/x = 1; 1(x-3) = x - 3; subtract to get 7. Answer: 2x + 1 + 7/(x - 3).",
+              "mistake": "Subtracting -6x as -5x - 6x = -11x instead of -5x + 6x = x.",
+              "again": "\\(\\dfrac{3x^2+10x-1}{x+4}\\)",
+              "againA": "\\(3x-2+\\dfrac{7}{x+4}\\)",
+              "reflect": "How do you know when to stop dividing?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "Videos",
+                  "tab": "tab-videos"
+                }
+              ]
+            },
+            {
+              "id": "pr4-t3",
+              "title": "Divide by a quadratic (the CheckIt type)",
+              "target": "Same loop with a quadratic divisor: the quotient is linear and the remainder has degree at most 1.",
+              "cold": "Use long division to find the quotient and remainder for \\(f(x)=\\dfrac{3x^3-20x+14}{x^2+x-6}\\).",
+              "coldPlain": "Use long division to find the quotient and remainder for f(x) = (3x^3 - 20x + 14)/(x^2 + x - 6).",
+              "note": "Show each divide, multiply, subtract cycle, any placeholder terms, and where you stopped and why.",
+              "coldA": "\\(f(x)=3x-3+\\dfrac{x-4}{x^2+x-6}\\)[[graph:LD3]][[graph:S3]]",
+              "solution": "Write 3x^3 + 0x^2 - 20x + 14. 3x^3/x^2 = 3x; subtract 3x^3 + 3x^2 - 18x to get -3x^2 - 2x + 14. -3x^2/x^2 = -3; subtract -3x^2 - 3x + 18 to get x - 4. Quotient 3x - 3, remainder x - 4.",
+              "mistake": "Forgetting the 0x^2 placeholder, which shifts every column.",
+              "again": "\\(\\dfrac{5x^3-15x^2-79x-62}{x^2-4x-12}\\)",
+              "againA": "\\(5x+5+\\dfrac{x-2}{x^2-4x-12}\\)",
+              "reflect": "Why must the remainder here have degree 0 or 1?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "Videos",
+                  "tab": "tab-videos"
+                },
+                {
+                  "label": "AI Prompts",
+                  "tab": "tab-prompts"
+                }
+              ]
+            },
+            {
+              "id": "pr4-t4",
+              "title": "Check by multiplying back",
+              "target": "Check: \\(\\text{quotient}\\times\\text{divisor}+\\text{remainder}=\\text{dividend}\\).",
+              "cold": "Check that \\((3x-3)(x^2+x-6)+(x-4)=3x^3-20x+14\\).",
+              "coldPlain": "Check that (3x - 3)(x^2 + x - 6) + (x - 4) = 3x^3 - 20x + 14.",
+              "coldA": "[[graph:S4]]",
+              "solution": "(3x - 3)(x^2 + x - 6) = 3x^3 + 3x^2 - 18x - 3x^2 - 3x + 18 = 3x^3 - 21x + 18. Add x - 4: 3x^3 - 20x + 14. It matches.",
+              "mistake": "Adding the remainder before multiplying, or forgetting it.",
+              "again": "Check \\(2x+1+\\dfrac{7}{x-3}\\) for \\(\\dfrac{2x^2-5x+4}{x-3}\\).",
+              "againA": "\\((2x+1)(x-3)+7=2x^2-5x-3+7=2x^2-5x+4\\) ✓",
+              "reflect": "How is this the same check as 165 × 12 + 7 = 1987?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Put it together",
+          "desc": "A practice check in the same format as the PR4 CheckIt.",
+          "stops": [
+            {
+              "id": "pr4-f1",
+              "title": "Practice check",
+              "target": "Use long division to write a cubic over a quadratic as a polynomial plus a proper rational function.",
+              "cold": "Use long division to find the quotient and remainder for \\(f(x)=\\dfrac{-2x^3+4x^2+39x-37}{x^2+3x-4}\\).",
+              "coldPlain": "Use long division to find the quotient and remainder for f(x) = (-2x^3 + 4x^2 + 39x - 37)/(x^2 + 3x - 4).",
+              "note": "Show each divide, multiply, subtract cycle, any placeholder terms, and where you stopped and why.",
+              "coldA": "\\(f(x)=-2x+10+\\dfrac{x+3}{x^2+3x-4}\\)[[graph:LDF]][[graph:SF]]",
+              "solution": "-2x^3/x^2 = -2x; subtract -2x^3 - 6x^2 + 8x to get 10x^2 + 31x - 37. 10x^2/x^2 = 10; subtract 10x^2 + 30x - 40 to get x + 3. Quotient -2x + 10, remainder x + 3.",
+              "mistake": "Subtracting -6x^2: 4x^2 - (-6x^2) = 10x^2, not -2x^2.",
+              "again": "\\(f(x)=\\dfrac{-x^3+3x^2+29x-59}{x^2+3x-10}\\). Then check your answer by multiplying back.",
+              "againA": "\\(-x+6+\\dfrac{x+1}{x^2+3x-10}\\); \\((-x+6)(x^2+3x-10)+(x+1)=-x^3+3x^2+29x-59\\) ✓",
+              "reflect": "Which step of the loop do you want to slow down on?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "AI Prompts",
+                  "tab": "tab-prompts"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PR5",
+      "label": "PR5: Zeros of Polynomial Functions",
+      "sectionLabel": "PR5, Zeros of Polynomial Functions",
+      "intro": "Builds to the PR5 check: find all zeros (rational, irrational, and complex) of a polynomial and write it as a product of linear factors.",
+      "graphs": {
+        "RRT": "<div class=\"table-wrap\"><table class=\"lookup\"><tr><th scope=\"col\">Leading coefficient 2</th><th scope=\"col\">Constant term 6</th></tr><tr><td>factors \\(q\\): \\(\\pm1,\\pm2\\)</td><td>factors \\(p\\): \\(\\pm1,\\pm2,\\pm3,\\pm6\\)</td></tr></table></div><p>Candidates \\(\\dfrac{p}{q}\\): \\(\\pm1,\\pm2,\\pm3,\\pm6,\\pm\\tfrac12,\\pm\\tfrac32\\)</p>",
+        "LDA": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division layout\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(2x^2\\)</td><td class=\"ld-cell\">\\(+3x\\)</td><td class=\"ld-cell\">\\(-2\\)</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">\\(x - 3\\)</td><td class=\"ld-cell ld-first\">\\(2x^3\\)</td><td class=\"ld-cell\">\\(-3x^2\\)</td><td class=\"ld-cell\">\\(-11x\\)</td><td class=\"ld-cell\">\\(+6\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\">\\(-\\big(\\)\\(2x^3\\)</td><td class=\"ld-cell\">\\(-6x^2\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(3x^2\\)</td><td class=\"ld-cell\">\\(-11x\\)</td><td class=\"ld-cell\">\\(+6\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(3x^2\\)</td><td class=\"ld-cell\">\\(-9x\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(-2x\\)</td><td class=\"ld-cell\">\\(+6\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(-2x\\)</td><td class=\"ld-cell\">\\(+6\\)\\(\\big)\\)</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(0\\)</td></tr></table></div>",
+        "LDB": "<div class=\"table-wrap\"><table class=\"ld\" aria-label=\"Long division layout\"><tr class=\"ld-q\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\">\\(x^2\\)</td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(+4\\)</td></tr><tr class=\"ld-div\"><td class=\"ld-lab\">\\(x - 3\\)</td><td class=\"ld-cell ld-first\">\\(x^3\\)</td><td class=\"ld-cell\">\\(-3x^2\\)</td><td class=\"ld-cell\">\\(+4x\\)</td><td class=\"ld-cell\">\\(-12\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\">\\(-\\big(\\)\\(x^3\\)</td><td class=\"ld-cell\">\\(-3x^2\\)\\(\\big)\\)</td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td></tr><tr class=\"ld-res\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(4x\\)</td><td class=\"ld-cell\">\\(-12\\)</td></tr><tr class=\"ld-sub\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(-\\big(\\)\\(4x\\)</td><td class=\"ld-cell\">\\(-12\\)\\(\\big)\\)</td></tr><tr class=\"ld-res ld-rem\"><td class=\"ld-lab\"></td><td class=\"ld-cell ld-first\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\"></td><td class=\"ld-cell\">\\(0\\)</td></tr></table></div>",
+        "S1": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Test \\(x=3\\)</td><td>\\(f(3)=2(27)-3(9)-11(3)+6=54-27-33+6=0\\)</td><td><span class=\"pr-badge pr-pow\">Remainder Theorem</span></td></tr><tr><td>Conclude</td><td>\\(f(3)=0\\), so 3 is a zero and \\((x-3)\\) is a factor.</td><td><span class=\"pr-badge pr-prod\">Factor Theorem</span></td></tr><tr><td>Test \\(x=1\\)</td><td>\\(f(1)=2-3-11+6=-6\\neq0\\): not a zero, and \\(-6\\) is the remainder when dividing by \\(x-1\\).</td><td><span class=\"pr-badge pr-pow\">Remainder Theorem</span></td></tr></table></div>",
+        "S3": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Divide out</td><td>\\(\\dfrac{2x^3-3x^2-11x+6}{x-3}=2x^2+3x-2\\) (remainder 0)</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>Factor</td><td>\\(2x^2+3x-2=(2x-1)(x+2)\\)</td><td><span class=\"pr-badge pr-prod\">Linear factors</span></td></tr><tr><td>Zeros</td><td>\\(x=3,\\ \\tfrac12,\\ -2\\)</td><td><span class=\"pr-badge pr-prod\">Factor Theorem</span></td></tr></table></div>",
+        "S4": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Find a zero</td><td>Candidates \\(\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12\\); \\(f(3)=27-27+12-12=0\\)</td><td><span class=\"pr-badge pr-pow\">Remainder Theorem</span></td></tr><tr><td>Divide out</td><td>\\(x^3-3x^2+4x-12=(x-3)(x^2+4)\\)</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>Quadratic</td><td>\\(x^2+4=0\\Rightarrow x^2=-4\\Rightarrow x=\\pm2i\\)</td><td><span class=\"pr-badge pr-quot\">Quadratic formula</span></td></tr><tr><td>Pair</td><td>\\(2i\\) and \\(-2i\\) come as a conjugate pair.</td><td><span class=\"pr-badge pr-pow\">Conjugate pair</span></td></tr></table></div>",
+        "S5": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>Candidates</td><td>Leading coefficient 1, constant 18: \\(\\pm1,\\pm2,\\pm3,\\pm6,\\pm9,\\pm18\\). The graph suggests trying 2 and \\(-3\\).</td><td><span class=\"pr-badge pr-start\">Graph hint</span></td></tr><tr><td>\\(x=2\\)</td><td>\\(f(2)=0\\). Divide: \\(f(x)=(x-2)(x^4+4x^3-4x^2-24x-9)\\)</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>\\(x=-3\\)</td><td>Test \\(-3\\) in the quartic: 0. Divide: \\((x+3)(x^3+x^2-7x-3)\\)</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>\\(x=-3\\) again</td><td>Test \\(-3\\) in the cubic: \\(-27+9+21-3=0\\). Divide: \\((x+3)(x^2-2x-1)\\). So \\(-3\\) has multiplicity 2.</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>Quadratic</td><td>\\(x=\\dfrac{2\\pm\\sqrt{4+4}}{2}=1\\pm\\sqrt2\\)</td><td><span class=\"pr-badge pr-quot\">Quadratic formula</span></td></tr><tr><td>Linear factors</td><td>\\(f(x)=(x-2)(x+3)^2\\big(x-(1+\\sqrt2)\\big)\\big(x-(1-\\sqrt2)\\big)\\)</td><td><span class=\"pr-badge pr-prod\">Linear factors</span></td></tr></table></div>",
+        "GR5": "<div class=\"graph-wrap\"><svg viewBox=\"0 0 420 240\" width=\"420\" style=\"max-width:100%;height:auto\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Graph of f(x) = x^5 + 2x^4 - 12x^3 - 16x^2 + 39x + 18. It touches the x-axis at -3 and crosses at about -0.41, 2, and 2.41. The integer-looking crossings, -3 and 2, are the rational candidates worth testing first.\"><line class=\"g-axis\" x1=\"26.0\" y1=\"120.0\" x2=\"394.0\" y2=\"120.0\" /><line class=\"g-axis\" x1=\"236.3\" y1=\"214.0\" x2=\"236.3\" y2=\"26.0\" /><text class=\"g-label\" x=\"26.0\" y=\"134.0\" text-anchor=\"middle\">−4</text><text class=\"g-label\" x=\"78.6\" y=\"134.0\" text-anchor=\"middle\">−3</text><text class=\"g-label\" x=\"131.1\" y=\"134.0\" text-anchor=\"middle\">−2</text><text class=\"g-label\" x=\"183.7\" y=\"134.0\" text-anchor=\"middle\">−1</text><text class=\"g-label\" x=\"288.9\" y=\"134.0\" text-anchor=\"middle\">1</text><text class=\"g-label\" x=\"341.4\" y=\"134.0\" text-anchor=\"middle\">2</text><text class=\"g-label\" x=\"394.0\" y=\"134.0\" text-anchor=\"middle\">3</text><polyline class=\"g-line\" points=\"36.3,212.9 37.0,208.9 37.8,205.0 38.5,201.3 39.2,197.6 40.0,194.1 40.7,190.7 41.5,187.3 42.2,184.1 42.9,181.0 43.7,178.0 44.4,175.0 45.1,172.2 45.9,169.5 46.6,166.9 47.3,164.3 48.1,161.9 48.8,159.5 49.6,157.2 50.3,155.0 51.0,152.9 51.8,150.9 52.5,148.9 53.2,147.1 54.0,145.3 54.7,143.6 55.4,141.9 56.2,140.4 56.9,138.9 57.6,137.4 58.4,136.1 59.1,134.8 59.9,133.5 60.6,132.4 61.3,131.3 62.1,130.2 62.8,129.2 63.5,128.3 64.3,127.4 65.0,126.6 65.7,125.9 66.5,125.2 67.2,124.5 68.0,123.9 68.7,123.3 69.4,122.8 70.2,122.4 70.9,122.0 71.6,121.6 72.4,121.3 73.1,121.0 73.8,120.7 74.6,120.5 75.3,120.3 76.0,120.2 76.8,120.1 77.5,120.0 78.3,120.0 79.0,120.0 79.7,120.0 80.5,120.1 81.2,120.2 81.9,120.3 82.7,120.5 83.4,120.6 84.1,120.9 84.9,121.1 85.6,121.3 86.4,121.6 87.1,121.9 87.8,122.2 88.6,122.6 89.3,122.9 90.0,123.3 90.8,123.7 91.5,124.1 92.2,124.5 93.0,125.0 93.7,125.4 94.4,125.9 95.2,126.4 95.9,126.9 96.7,127.4 97.4,127.9 98.1,128.4 98.9,128.9 99.6,129.5 100.3,130.0 101.1,130.6 101.8,131.2 102.5,131.7 103.3,132.3 104.0,132.9 104.8,133.5 105.5,134.1 106.2,134.6 107.0,135.2 107.7,135.8 108.4,136.4 109.2,137.0 109.9,137.6 110.6,138.2 111.4,138.8 112.1,139.4 112.8,140.0 113.6,140.6 114.3,141.2 115.1,141.8 115.8,142.3 116.5,142.9 117.3,143.5 118.0,144.1 118.7,144.6 119.5,145.2 120.2,145.7 120.9,146.3 121.7,146.8 122.4,147.3 123.2,147.8 123.9,148.3 124.6,148.9 125.4,149.3 126.1,149.8 126.8,150.3 127.6,150.8 128.3,151.2 129.0,151.7 129.8,152.1 130.5,152.5 131.2,153.0 132.0,153.4 132.7,153.8 133.5,154.1 134.2,154.5 134.9,154.9 135.7,155.2 136.4,155.5 137.1,155.9 137.9,156.2 138.6,156.5 139.3,156.7 140.1,157.0 140.8,157.3 141.6,157.5 142.3,157.7 143.0,158.0 143.8,158.2 144.5,158.3 145.2,158.5 146.0,158.7 146.7,158.8 147.4,159.0 148.2,159.1 148.9,159.2 149.6,159.3 150.4,159.3 151.1,159.4 151.9,159.4 152.6,159.5 153.3,159.5 154.1,159.5 154.8,159.5 155.5,159.5 156.3,159.4 157.0,159.4 157.7,159.3 158.5,159.2 159.2,159.1 160.0,159.0 160.7,158.9 161.4,158.7 162.2,158.6 162.9,158.4 163.6,158.2 164.4,158.0 165.1,157.8 165.8,157.6 166.6,157.3 167.3,157.1 168.0,156.8 168.8,156.5 169.5,156.3 170.3,156.0 171.0,155.6 171.7,155.3 172.5,155.0 173.2,154.6 173.9,154.2 174.7,153.8 175.4,153.5 176.1,153.0 176.9,152.6 177.6,152.2 178.4,151.8 179.1,151.3 179.8,150.8 180.6,150.4 181.3,149.9 182.0,149.4 182.8,148.9 183.5,148.3 184.2,147.8 185.0,147.3 185.7,146.7 186.4,146.2 187.2,145.6 187.9,145.0 188.7,144.4 189.4,143.9 190.1,143.3 190.9,142.6 191.6,142.0 192.3,141.4 193.1,140.8 193.8,140.1 194.5,139.5 195.3,138.8 196.0,138.1 196.8,137.5 197.5,136.8 198.2,136.1 199.0,135.4 199.7,134.7 200.4,134.0 201.2,133.3 201.9,132.6 202.6,131.9 203.4,131.2 204.1,130.5 204.8,129.8 205.6,129.0 206.3,128.3 207.1,127.6 207.8,126.8 208.5,126.1 209.3,125.3 210.0,124.6 210.7,123.8 211.5,123.1 212.2,122.3 212.9,121.6 213.7,120.8 214.4,120.1 215.2,119.3 215.9,118.6 216.6,117.8 217.4,117.1 218.1,116.3 218.8,115.6 219.6,114.8 220.3,114.1 221.0,113.4 221.8,112.6 222.5,111.9 223.2,111.1 224.0,110.4 224.7,109.7 225.5,109.0 226.2,108.2 226.9,107.5 227.7,106.8 228.4,106.1 229.1,105.4 229.9,104.7 230.6,104.0 231.3,103.3 232.1,102.6 232.8,102.0 233.6,101.3 234.3,100.6 235.0,100.0 235.8,99.3 236.5,98.7 237.2,98.0 238.0,97.4 238.7,96.8 239.4,96.2 240.2,95.6 240.9,95.0 241.6,94.4 242.4,93.8 243.1,93.2 243.9,92.7 244.6,92.1 245.3,91.6 246.1,91.1 246.8,90.5 247.5,90.0 248.3,89.5 249.0,89.1 249.7,88.6 250.5,88.1 251.2,87.7 252.0,87.2 252.7,86.8 253.4,86.4 254.2,86.0 254.9,85.6 255.6,85.2 256.4,84.8 257.1,84.5 257.8,84.1 258.6,83.8 259.3,83.5 260.0,83.2 260.8,82.9 261.5,82.6 262.3,82.3 263.0,82.1 263.7,81.8 264.5,81.6 265.2,81.4 265.9,81.2 266.7,81.0 267.4,80.9 268.1,80.7 268.9,80.6 269.6,80.4 270.4,80.3 271.1,80.2 271.8,80.2 272.6,80.1 273.3,80.0 274.0,80.0 274.8,80.0 275.5,80.0 276.2,80.0 277.0,80.0 277.7,80.0 278.4,80.1 279.2,80.2 279.9,80.3 280.7,80.3 281.4,80.5 282.1,80.6 282.9,80.7 283.6,80.9 284.3,81.0 285.1,81.2 285.8,81.4 286.5,81.6 287.3,81.9 288.0,82.1 288.8,82.4 289.5,82.6 290.2,82.9 291.0,83.2 291.7,83.5 292.4,83.8 293.2,84.2 293.9,84.5 294.6,84.9 295.4,85.3 296.1,85.6 296.8,86.0 297.6,86.5 298.3,86.9 299.1,87.3 299.8,87.8 300.5,88.2 301.3,88.7 302.0,89.2 302.7,89.6 303.5,90.1 304.2,90.7 304.9,91.2 305.7,91.7 306.4,92.2 307.2,92.8 307.9,93.3 308.6,93.9 309.4,94.5 310.1,95.1 310.8,95.6 311.6,96.2 312.3,96.8 313.0,97.4 313.8,98.0 314.5,98.7 315.2,99.3 316.0,99.9 316.7,100.5 317.5,101.1 318.2,101.8 318.9,102.4 319.7,103.1 320.4,103.7 321.1,104.3 321.9,105.0 322.6,105.6 323.3,106.2 324.1,106.9 324.8,107.5 325.6,108.2 326.3,108.8 327.0,109.4 327.8,110.0 328.5,110.6 329.2,111.3 330.0,111.9 330.7,112.5 331.4,113.1 332.2,113.6 332.9,114.2 333.6,114.8 334.4,115.3 335.1,115.9 335.9,116.4 336.6,116.9 337.3,117.4 338.1,117.9 338.8,118.4 339.5,118.9 340.3,119.3 341.0,119.8 341.7,120.2 342.5,120.6 343.2,120.9 344.0,121.3 344.7,121.6 345.4,121.9 346.2,122.2 346.9,122.5 347.6,122.7 348.4,122.9 349.1,123.1 349.8,123.3 350.6,123.4 351.3,123.5 352.0,123.6 352.8,123.6 353.5,123.6 354.3,123.6 355.0,123.5 355.7,123.4 356.5,123.3 357.2,123.1 357.9,122.8 358.7,122.6 359.4,122.3 360.1,121.9 360.9,121.5 361.6,121.1 362.4,120.6 363.1,120.1 363.8,119.5 364.6,118.9 365.3,118.2 366.0,117.5 366.8,116.7 367.5,115.8 368.2,114.9 369.0,113.9 369.7,112.9 370.4,111.8 371.2,110.7 371.9,109.5 372.7,108.2 373.4,106.8 374.1,105.4 374.9,103.9 375.6,102.4 376.3,100.8 377.1,99.1 377.8,97.3 378.5,95.4 379.3,93.5 380.0,91.5 380.8,89.3 381.5,87.2 382.2,84.9 383.0,82.5 383.7,80.1 384.4,77.5 385.2,74.9 385.9,72.2 386.6,69.4 387.4,66.4 388.1,63.4 388.8,60.3 389.6,57.1 390.3,53.7 391.1,50.3 391.8,46.7 392.5,43.1 393.3,39.3 394.0,35.4\"/><circle cx=\"78.6\" cy=\"120.0\" r=\"5\" fill=\"#c0392b\"/><text class=\"g-anntext g-halo\" x=\"78.6\" y=\"110.0\" text-anchor=\"middle\">−3</text><circle cx=\"341.4\" cy=\"120.0\" r=\"5\" fill=\"#c0392b\"/><text class=\"g-anntext g-halo\" x=\"341.4\" y=\"142.0\" text-anchor=\"middle\">2</text><circle cx=\"214.5\" cy=\"120.0\" r=\"5\" fill=\"#c0392b\"/><text class=\"g-anntext g-halo\" x=\"214.5\" y=\"110.0\" text-anchor=\"middle\">1−√2</text><circle cx=\"363.2\" cy=\"120.0\" r=\"5\" fill=\"#c0392b\"/><text class=\"g-anntext g-halo\" x=\"363.2\" y=\"110.0\" text-anchor=\"middle\">1+√2</text></svg></div>",
+        "SF": "<div class=\"table-wrap\"><table class=\"lookup steps\"><tr><th scope=\"col\">Step</th><th scope=\"col\">Work</th><th scope=\"col\">Tool</th></tr><tr><td>(1) \\(f\\)</td><td>Candidates \\(\\pm\\tfrac{p}{q}\\) with \\(p\\mid60\\), \\(q\\mid2\\). \\(f(3)=0\\); divide: \\((x-3)(2x^3+5x^2+8x+20)\\). \\(f(-\\tfrac52)=0\\); divide: \\((x-3)(2x+5)(x^2+4)\\).</td><td><span class=\"pr-badge pr-quot\">Rational Root Theorem</span></td></tr><tr><td>(1) finish</td><td>\\(x^2+4=0\\Rightarrow x=\\pm2i\\). Zeros \\(3,-\\tfrac52,2i,-2i\\); \\(f(x)=(x-3)(2x+5)(x-2i)(x+2i)\\)</td><td><span class=\"pr-badge pr-prod\">Linear factors</span></td></tr><tr><td>(2) \\(g\\)</td><td>\\(g(-2)=0\\), \\(g(4)=0\\) twice: \\(g(x)=(x+2)(x-4)^2(x^2+2x-4)\\)</td><td><span class=\"pr-badge pr-pow\">Divide out</span></td></tr><tr><td>(2) finish</td><td>\\(x=\\dfrac{-2\\pm\\sqrt{4+16}}{2}=-1\\pm\\sqrt5\\). \\(g(x)=(x+2)(x-4)^2\\big(x-(-1+\\sqrt5)\\big)\\big(x-(-1-\\sqrt5)\\big)\\)</td><td><span class=\"pr-badge pr-quot\">Quadratic formula</span></td></tr></table></div>"
+      },
+      "stages": [
+        {
+          "stage": "Get ready",
+          "desc": "Three quick reviews PR5 leans on: the quadratic formula with irrational and complex answers, evaluating polynomials, and long division by x − a (PR4). Skip any you already have.",
+          "stops": [
+            {
+              "id": "pr5-g1",
+              "title": "Quadratic formula: irrational and complex answers",
+              "target": "Use \\(x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}\\); simplify radicals, and use \\(\\sqrt{-1}=i\\) when the discriminant is negative (PR1/PR2).",
+              "cold": "Solve: (1) \\(x^2-4x+1=0\\) (2) \\(x^2+9=0\\)",
+              "coldPlain": "Solve: (1) x^2 - 4x + 1 = 0 (2) x^2 + 9 = 0",
+              "coldA": "(1) \\(x=\\dfrac{4\\pm\\sqrt{12}}{2}=2\\pm\\sqrt3\\) (2) \\(x=\\pm3i\\)",
+              "solution": "(1) Discriminant 16 - 4 = 12; sqrt12 = 2sqrt3; (4 plus or minus 2sqrt3)/2 = 2 plus or minus sqrt3. (2) x^2 = -9, x = plus or minus 3i.",
+              "mistake": "Simplifying (4 + 2sqrt3)/2 as 2 + 2sqrt3 (divide every term by 2).",
+              "again": "(1) \\(x^2+2x-4=0\\) (2) \\(x^2+25=0\\)",
+              "againA": "(1) \\(-1\\pm\\sqrt5\\) (2) \\(\\pm5i\\)",
+              "reflect": "What does a negative discriminant tell you about the zeros?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr5-g2",
+              "title": "Evaluate a polynomial (including fractions)",
+              "target": "Substitute carefully, including negative and fractional inputs.",
+              "cold": "For \\(f(x)=2x^3-3x^2-11x+6\\), find \\(f(-2)\\) and \\(f\\left(\\tfrac12\\right)\\).",
+              "coldPlain": "For f(x) = 2x^3 - 3x^2 - 11x + 6, find f(-2) and f(1/2).",
+              "coldA": "\\(f(-2)=-16-12+22+6=0\\); \\(f\\left(\\tfrac12\\right)=\\tfrac14-\\tfrac34-\\tfrac{11}{2}+6=0\\)",
+              "solution": "f(-2) = 2(-8) - 3(4) - 11(-2) + 6 = -16 - 12 + 22 + 6 = 0. f(1/2) = 2(1/8) - 3(1/4) - 11/2 + 6 = 1/4 - 3/4 - 11/2 + 6 = 0.",
+              "mistake": "Computing (-2)^3 as 8 or -3(-2)^2 as +12.",
+              "again": "For \\(g(x)=x^3-3x^2+4x-12\\), find \\(g(3)\\) and \\(g(-1)\\).",
+              "againA": "\\(g(3)=0\\); \\(g(-1)=-1-3-4-12=-20\\)",
+              "reflect": "Which sign rule do you need to slow down on?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr5-g3",
+              "title": "Long division by x − a (PR4)",
+              "target": "Divide a polynomial by a linear factor using the PR4 loop.",
+              "cold": "Divide \\(\\dfrac{2x^3-3x^2-11x+6}{x-3}\\).",
+              "coldPlain": "Divide (2x^3 - 3x^2 - 11x + 6)/(x - 3).",
+              "coldA": "\\(2x^2+3x-2\\), remainder 0.[[graph:LDA]]",
+              "solution": "2x^3/x = 2x^2; subtract 2x^3 - 6x^2 to get 3x^2 - 11x. 3x^2/x = 3x; subtract 3x^2 - 9x to get -2x + 6. -2x/x = -2; subtract -2x + 6 to get 0.",
+              "mistake": "Subtracting -6x^2 as -3x^2 - 6x^2.",
+              "again": "\\(\\dfrac{x^3-3x^2+4x-12}{x-3}\\)",
+              "againA": "\\(x^2+4\\), remainder 0.[[graph:LDB]]",
+              "reflect": "What does a remainder of 0 tell you about x - 3?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Learn the skills",
+          "desc": "Test a candidate, list candidates, divide and finish, complex pairs, and a full degree-5 example.",
+          "stops": [
+            {
+              "id": "pr5-t1",
+              "title": "Remainder and Factor Theorems: test a candidate",
+              "target": "\\(f(a)\\) is the remainder when dividing by \\(x-a\\). If \\(f(a)=0\\), then \\(a\\) is a zero and \\((x-a)\\) is a factor.",
+              "cold": "Is \\(x=3\\) a zero of \\(f(x)=2x^3-3x^2-11x+6\\)? Is \\(x=1\\)?",
+              "coldPlain": "Is x = 3 a zero of f(x) = 2x^3 - 3x^2 - 11x + 6? Is x = 1?",
+              "note": "Show which candidates you tested and the result, each division, and the quadratic formula work at the end.",
+              "coldA": "Yes, \\(f(3)=0\\). No, \\(f(1)=-6\\).[[graph:S1]]",
+              "solution": "f(3) = 54 - 27 - 33 + 6 = 0, so 3 is a zero and (x - 3) is a factor. f(1) = -6, so 1 is not a zero.",
+              "mistake": "Concluding x = -3 is a zero because (x - 3) is a factor, or the reverse.",
+              "again": "Is \\(x=-2\\) a zero of \\(g(x)=x^3+x^2-4x-4\\)?",
+              "againA": "\\(g(-2)=-8+4+8-4=0\\): yes, \\((x+2)\\) is a factor.",
+              "reflect": "Why is plugging in faster than dividing when you only want to test?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "Videos",
+                  "tab": "tab-videos"
+                }
+              ]
+            },
+            {
+              "id": "pr5-t2",
+              "title": "Rational Root Theorem: the candidate list",
+              "target": "Every rational zero is \\(\\pm\\dfrac{p}{q}\\), with \\(p\\) a factor of the constant term and \\(q\\) a factor of the leading coefficient.",
+              "cold": "List the possible rational zeros of \\(f(x)=2x^3-3x^2-11x+6\\).",
+              "coldPlain": "List the possible rational zeros of f(x) = 2x^3 - 3x^2 - 11x + 6.",
+              "coldA": "[[graph:RRT]]",
+              "solution": "p divides 6: 1, 2, 3, 6. q divides 2: 1, 2. Candidates: plus or minus 1, 2, 3, 6, 1/2, 3/2.",
+              "mistake": "Putting the leading coefficient on top (p and q swapped).",
+              "again": "List the candidates for \\(3x^3+x^2-8x+4\\).",
+              "againA": "\\(\\pm1,\\pm2,\\pm4,\\pm\\tfrac13,\\pm\\tfrac23,\\pm\\tfrac43\\)",
+              "reflect": "Why can the list be long but the actual zeros few?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "Videos",
+                  "tab": "tab-videos"
+                }
+              ]
+            },
+            {
+              "id": "pr5-t3",
+              "title": "Divide out a zero and finish",
+              "target": "After finding a zero a, divide by (x − a) to drop the degree, then factor or use the quadratic formula on what is left.",
+              "cold": "Find all zeros of \\(f(x)=2x^3-3x^2-11x+6\\).",
+              "coldPlain": "Find all zeros of f(x) = 2x^3 - 3x^2 - 11x + 6.",
+              "note": "Show which candidates you tested and the result, each division, and the quadratic formula work at the end.",
+              "coldA": "\\(x=3,\\ \\tfrac12,\\ -2\\); \\(f(x)=(x-3)(2x-1)(x+2)\\)[[graph:S3]]",
+              "solution": "f(3) = 0, so divide by x - 3: 2x^2 + 3x - 2 = (2x - 1)(x + 2). Zeros 3, 1/2, -2.",
+              "mistake": "Stopping after finding 3, instead of dividing to find the rest.",
+              "again": "Find all zeros of \\(x^3-x^2-7x+3\\).",
+              "againA": "\\(f(3)=0\\); \\((x-3)(x^2+2x-1)\\); \\(x=3,\\ -1\\pm\\sqrt2\\).",
+              "reflect": "Why does each zero you find make the rest of the problem easier?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr5-t4",
+              "title": "Complex zeros come in pairs",
+              "target": "If the leftover quadratic has a negative discriminant, its zeros are a conjugate pair \\(a\\pm bi\\). Linear factors: \\((x-bi)(x+bi)\\).",
+              "cold": "Find all zeros of \\(f(x)=x^3-3x^2+4x-12\\) and write it as a product of linear factors.",
+              "coldPlain": "Find all zeros of f(x) = x^3 - 3x^2 + 4x - 12 and write it as a product of linear factors.",
+              "note": "Show which candidates you tested and the result, each division, and the quadratic formula work at the end.",
+              "coldA": "\\(x=3,\\pm2i\\); \\(f(x)=(x-3)(x-2i)(x+2i)\\)[[graph:S4]]",
+              "solution": "f(3) = 0; dividing gives x^2 + 4. x^2 = -4 gives x = 2i and -2i. Linear factors: (x - 3)(x - 2i)(x + 2i).",
+              "mistake": "Writing x^2 + 4 = (x + 2)(x - 2) or saying it has no zeros.",
+              "again": "\\(g(x)=x^3+2x^2+9x+18\\)",
+              "againA": "\\(g(-2)=0\\); \\((x+2)(x^2+9)\\); \\(x=-2,\\pm3i\\); \\((x+2)(x-3i)(x+3i)\\).",
+              "reflect": "Why can a real-coefficient polynomial never have 2i as a zero without -2i?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                }
+              ]
+            },
+            {
+              "id": "pr5-t5",
+              "title": "Degree 5, repeated zero, irrational pair",
+              "target": "Use the graph to choose candidates, divide repeatedly (test the same zero again for multiplicity), and finish with the quadratic formula.",
+              "cold": "Find the zeros of \\(f(x)=x^5+2x^4-12x^3-16x^2+39x+18\\) and express it as a product of linear factors.[[graph:GR5]]",
+              "coldPlain": "Find the zeros of f(x) = x^5 + 2x^4 - 12x^3 - 16x^2 + 39x + 18 and express it as a product of linear factors.",
+              "graphNote": "It shows the x-intercepts near -3 (touching), -0.4, 2, and 2.4.",
+              "note": "Show which candidates you tested and the result, each division, and the quadratic formula work at the end.",
+              "coldA": "\\(x=2,\\ -3\\ (\\text{mult. }2),\\ 1\\pm\\sqrt2\\)[[graph:S5]]",
+              "solution": "Test 2: zero; divide. Test -3: zero; divide. Test -3 again: zero again (multiplicity 2); divide to x^2 - 2x - 1. Quadratic formula: 1 plus or minus sqrt2. f(x) = (x - 2)(x + 3)^2(x - (1 + sqrt2))(x - (1 - sqrt2)).",
+              "mistake": "Testing -3 only once and missing that it is a double zero.",
+              "again": "\\(f(x)=x^5-3x^4-11x^3+21x^2+40x-12\\)",
+              "againA": "\\(x=3,\\ -2\\ (\\text{mult. }2),\\ 2\\pm\\sqrt3\\); \\(f(x)=(x-3)(x+2)^2\\big(x-(2+\\sqrt3)\\big)\\big(x-(2-\\sqrt3)\\big)\\)",
+              "reflect": "How did the graph save you time?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "AI Prompts",
+                  "tab": "tab-prompts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Put it together",
+          "desc": "A practice check in the same format as the PR5 CheckIt: two polynomials.",
+          "stops": [
+            {
+              "id": "pr5-f1",
+              "title": "Practice check",
+              "target": "Find the zeros of each polynomial and express it as a product of linear factors.",
+              "cold": "Find the zeros of each polynomial, and express it as a product of linear factors.<br>(1) \\(f(x)=2x^4-x^3-7x^2-4x-60\\)<br>(2) \\(g(x)=x^5-4x^4-16x^3+56x^2+64x-128\\)",
+              "coldPlain": "Find the zeros and linear factors: (1) f(x) = 2x^4 - x^3 - 7x^2 - 4x - 60 (2) g(x) = x^5 - 4x^4 - 16x^3 + 56x^2 + 64x - 128",
+              "note": "Show which candidates you tested and the result, each division, and the quadratic formula work at the end.",
+              "coldA": "(1) \\(x=3,-\\tfrac52,2i,-2i\\); \\(f(x)=(x-3)(2x+5)(x-2i)(x+2i)\\) (2) \\(x=-2,\\ 4\\ (\\text{mult. }2),\\ -1\\pm\\sqrt5\\)[[graph:SF]]",
+              "solution": "(1) Test candidates: f(3) = 0 and f(-5/2) = 0; dividing out (x - 3) and then (2x + 5) leaves x^2 + 4, which gives plus or minus 2i. (2) g(-2) = 0 and g(4) = 0 twice; dividing leaves x^2 + 2x - 4, with zeros -1 plus or minus sqrt5.",
+              "mistake": "In (1), writing the factor for -5/2 as (x + 5/2) and losing the leading coefficient 2; (2x + 5) keeps it.",
+              "again": "(1) \\(f(x)=3x^4+13x^3+17x^2+117x-90\\) (2) \\(g(x)=x^5-3x^4-11x^3+21x^2+40x-12\\)",
+              "againA": "(1) \\(x=-5,\\tfrac23,\\pm3i\\); \\((x+5)(3x-2)(x-3i)(x+3i)\\) (2) \\(x=3,\\ -2\\ (\\text{mult. }2),\\ 2\\pm\\sqrt3\\)",
+              "reflect": "Which part takes you longest: the candidate list, the testing, or the final quadratic?",
+              "related": [
+                {
+                  "label": "FAQs",
+                  "tab": "tab-faq"
+                },
+                {
+                  "label": "AI Prompts",
+                  "tab": "tab-prompts"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
